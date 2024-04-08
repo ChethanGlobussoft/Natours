@@ -8,6 +8,7 @@ const mongoSanitize = require('express-mongo-sanitize'); // To sanitize NoSQL qu
 const { xss } = require('express-xss-sanitizer'); // To sanitize xss(Sending html code to DB)
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 // Custom error handling and routing modules
 const AppError = require(`${__dirname}/utils/appError`); // Custom error class
 const globalErrorHandler = require(`${__dirname}/controllers/errorController`); // Global error handler
@@ -111,7 +112,7 @@ app.use(
     ],
   })
 );
-
+app.use(compression())
 // Logger middleware
 app.use((req, res, next) => {
   // console.log(req.cookies);

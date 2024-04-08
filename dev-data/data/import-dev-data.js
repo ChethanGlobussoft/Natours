@@ -10,7 +10,9 @@ dotenv.config({
 });
 
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.PASSWORD);
-mongoose.connect(DB).then((connection) => console.log('CONNECTED 👌'));
+mongoose.connect(DB).then((connection) => {
+  // console.log('CONNECTED 👌');
+});
 
 //READ json file
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
@@ -24,10 +26,10 @@ const importData = async () => {
     await Tour.create(tours);
     await User.create(users, { validateBeforeSave: false });
     await Review.create(reviews);
-    console.log('Imported to DB');
+    // console.log('Imported to DB');
     process.exit();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
@@ -36,10 +38,10 @@ const deleteData = async () => {
     await Tour.deleteMany();
     await User.deleteMany();
     await Review.deleteMany();
-    console.log('Deleted old data from DB');
+    // console.log('Deleted old data from DB');
     process.exit();
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 };
 
