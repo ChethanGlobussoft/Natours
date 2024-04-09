@@ -6,9 +6,13 @@ const rateLimit = require('express-rate-limit'); // Rate limit middleware
 const helmet = require('helmet'); // To set security HTTP headers
 const mongoSanitize = require('express-mongo-sanitize'); // To sanitize NoSQL query injection
 const { xss } = require('express-xss-sanitizer'); // To sanitize xss(Sending html code to DB)
-const hpp = require('hpp');
-const cookieParser = require('cookie-parser');
+const hpp = require('hpp'); // For CSP
+const cookieParser = require('cookie-parser'); //To parse the incoming cookies
 const compression = require('compression');
+
+// For swagger documentation
+const swaggerDocs = require('./swagger');
+
 // Custom error handling and routing modules
 const AppError = require(`${__dirname}/utils/appError`); // Custom error class
 const globalErrorHandler = require(`${__dirname}/controllers/errorController`); // Global error handler
@@ -20,6 +24,7 @@ const viewRouter = require(`${__dirname}/routes/viewRoutes`); // Router for view
 const bookingRouter = require(`${__dirname}/routes/bookingRoutes`); // Router for review-related routes
 
 const app = express(); // Creating an instance of Express
+swaggerDocs(app, process.env.PORT);
 
 app.set('view engine', 'pug'); // Telling express that we are using pug template engine
 app.set('views', path.join(__dirname, 'views'));
@@ -112,7 +117,7 @@ app.use(
     ],
   })
 );
-app.use(compression())
+app.use(compression());
 // Logger middleware
 app.use((req, res, next) => {
   // console.log(req.cookies);
