@@ -39,7 +39,7 @@ router.use(protect);
 router.patch('/updateMyPassword', updatePassword); // update current user password
 router.patch('/updateMe', uploadUserPhoto, resizeUserPhoto, updateMe); // update current user data
 router.delete('/deleteMe', deleteMe); // delete current user
-router.get('/me', getMe, getUser);
+router.get('/me', getMe, getUser); // get current user
 
 // Only to admins
 router.use(restrictTo('admin'));
