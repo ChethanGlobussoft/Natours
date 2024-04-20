@@ -4,7 +4,7 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Natours',
+      title: 'Natours API Documentation',
       description: 'Natours is a nature tours application',
       version: '1.0.0',
     },

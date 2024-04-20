@@ -4,7 +4,6 @@ const Tour = require(`${__dirname}/../models/tourModel`);
 const Booking = require(`${__dirname}/../models/bookingModel`);
 
 const catchAsync = require(`${__dirname}/../utils/catchAsync`);
-const AppError = require(`${__dirname}/../utils/appError`);
 const factory = require(`${__dirname}/handlerFactory`);
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
